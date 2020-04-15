@@ -13,6 +13,16 @@ class SongsController < ApplicationController
     redirect_to song_path(@song)
   end
 
+  def edit
+    @song = Song.find_by_id(params[:id])
+  end
+
+  def update
+    @song = Song.find_by_id(params[:id])
+    @song.update(song_params)
+    redirect_to song_path(@song)
+  end
+
   private
   def song_params
     params.require(:song).permit(:name, :artist_id, :genre_id)
